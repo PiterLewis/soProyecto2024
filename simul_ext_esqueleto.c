@@ -294,6 +294,10 @@ int Copiar(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos, EXT_BYTE_MAPS *e
       for (i=0;i<MAX_NUMS_BLOQUE_INODO;i++){
           if (inodos->blq_inodos[ninodoorigen].i_nbloque[i] != NULL_BLOQUE){
              ext_bytemaps->bmap_bloques[j] = 1;
+               memcpy(memdatos[j].dato,memdatos[inodos->blq_inodos[ninodoorigen].i_nbloque[i]].dato,SIZE_BLOQUE);
+      
+          }
+          }
 
 }
 
@@ -331,4 +335,3 @@ void GrabarDatos(EXT_DATOS *memdatos, FILE *fich){
      fseek(fich,4*SIZE_BLOQUE,SEEK_SET);
      fwrite(memdatos, SIZE_BLOQUE, MAX_BLOQUES_DATOS, fich);
 }
-
